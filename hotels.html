@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umrah Hotels in Makkah & Madinah – Umair Ticket Wala</title>
+<meta name="description" content="Umrah hotels in Makkah and Madinah with real photos, walking distance to the Haram and clear per-night prices for private and sharing rooms.">
+<link rel="canonical" href="https://www.umairticketwala.com/hotels.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#0E3B34; --green-2:#134A41; --green-dark:#08261F;
+    --gold:#D9A441; --gold-text:#7A5A1C;
+    --ink:#17211E; --muted:#4A5753; --soft:#5B6864;
+    --line:#E3E8E6; --bg:#F7F5F0; --white:#FFFFFF; --mint:#C9DAD5;
+    --warn-bg:#FFF4D6; --warn-ink:#6B4E00;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  h1,h2,h3{font-family:'Sora',sans-serif;letter-spacing:-0.02em;margin:0}
+  a{color:inherit}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+  .eyebrow{font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-text)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 20px;border-radius:12px;font-weight:800;font-size:15px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+  .btn-gold{background:var(--gold);color:var(--green)}
+  .btn-green{background:var(--green);color:var(--white)}
+  .btn-outline-dark{border:1.5px solid var(--green);color:var(--green);background:transparent}
+  .btn{white-space:nowrap}
+  .btn:hover{filter:brightness(.95)}
+  label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+  select,input{height:46px;border-radius:10px;padding:0 12px;font-size:16px;font-family:inherit;width:100%;border:1px solid #CDD6D3;background:var(--white);color:var(--ink)}
+
+  header{background:var(--green);color:var(--white);position:sticky;top:0;z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 20px;max-width:1200px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white)}
+  .logo-mark{width:40px;height:40px;border-radius:10px;background:var(--gold);display:flex;align-items:center;justify-content:center}
+  .logo-text{font-family:'Sora',sans-serif;font-weight:800;font-size:19px}
+  .nav-links{display:flex;align-items:center;gap:24px;font-weight:700;font-size:15px}
+  .nav-links a{color:#DCE7E3;text-decoration:none}
+  .nav-links a:hover{color:var(--white)}
+  .nav-links .btn{color:var(--green)}
+  @media (max-width:860px){ .nav-links .hide-m{display:none} .logo-text{font-size:17px} }
+
+  .page-head{background:var(--green);color:var(--white);padding:40px 0 70px}
+  .page-head h1{font-size:clamp(30px,5vw,46px);margin:10px 0 10px}
+  .page-head p{color:var(--mint);font-size:17px;margin:0;max-width:640px}
+
+  .controls{max-width:1200px;margin:-44px auto 0;background:var(--white);border-radius:18px;box-shadow:0 10px 30px rgba(14,59,52,.10);padding:20px;display:flex;flex-direction:column;gap:16px;position:relative}
+  @media (max-width:1240px){ .controls{margin-left:20px;margin-right:20px} }
+  .tabs{display:flex;gap:8px;flex-wrap:wrap}
+  .tab{min-height:44px;padding:8px 20px;border-radius:999px;border:1.5px solid var(--line);background:var(--white);font-family:inherit;font-weight:800;font-size:15px;cursor:pointer;color:var(--ink)}
+  .tab[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:var(--white)}
+  .ctrl-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  @media (max-width:760px){ .ctrl-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+  .notice{border-radius:12px;padding:12px 16px;font-size:14px;background:var(--warn-bg);color:var(--warn-ink);margin:24px 0 0}
+  .meta-line{margin:20px 0 14px;font-size:14px;color:var(--soft)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:20px;padding-bottom:40px}
+  .hotel{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+  .photo{position:relative;aspect-ratio:16/10;background:#DDE6E3;display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;font-size:14px}
+  .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .dist{position:absolute;left:12px;bottom:12px;background:rgba(8,38,31,.88);color:var(--white);font-weight:800;font-size:13px;padding:6px 10px;border-radius:999px}
+  .h-body{padding:18px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .h-name{font-family:'Sora',sans-serif;font-weight:800;font-size:19px;line-height:1.25}
+  .stars{color:var(--gold-text);font-size:14px;font-weight:800;letter-spacing:1px}
+  .h-sub{font-size:14px;color:var(--soft)}
+  .h-price{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+  .h-price .big{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:var(--green);line-height:1.1}
+  .h-price small{display:block;font-size:12px;color:var(--soft);font-weight:600}
+  .empty{background:var(--white);border:1px dashed #C9D3D0;border-radius:16px;padding:28px;text-align:center;color:var(--muted)}
+
+  /* Modal */
+  dialog{border:0;border-radius:20px;padding:0;width:min(860px,96vw);max-height:92vh;overflow:auto;color:var(--ink)}
+  dialog::backdrop{background:rgba(8,38,31,.6)}
+  .m-head{position:sticky;top:0;background:var(--white);display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:18px 20px;border-bottom:1px solid var(--line);z-index:2}
+  .m-head h2{font-size:22px}
+  .x{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--white);cursor:pointer;font-size:22px;line-height:1;flex:none}
+  .m-body{padding:20px;display:flex;flex-direction:column;gap:18px}
+  .gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .gallery img,.gallery .ph{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px;background:#DDE6E3;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;font-weight:700}
+  @media (max-width:560px){ .gallery{grid-template-columns:1fr 1fr} }
+  .facts{display:flex;flex-wrap:wrap;gap:10px}
+  .fact{background:#EEF3F1;border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:var(--green)}
+  .tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+  table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+  th{background:#F4F7F6;font-size:13px;color:var(--muted)}
+  tr:last-child td{border-bottom:0}
+  td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+  @media (max-width:560px){ table{min-width:0;font-size:13px} th,td{padding:10px 8px} .col-rooms{display:none} td .h-sub{display:none} }
+  tr.pick{background:#FBF5E6}
+  .radio{width:20px;height:20px;accent-color:var(--green)}
+  .total-box{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:14px;background:var(--green);color:var(--white);border-radius:14px;padding:16px 18px}
+  .total-box .t{font-family:'Sora',sans-serif;font-weight:800;font-size:24px}
+  .total-box small{display:block;color:var(--mint);font-size:13px;font-weight:600}
+  .fine{font-size:13px;color:var(--soft);margin:0}
+
+  footer{background:var(--green-dark);color:var(--mint);padding:36px 0;margin-top:40px;font-size:14px}
+  .wa-float{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#1F8F4E;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:30}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="logo" aria-label="Umair Ticket Wala home">
+      <span class="logo-mark">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E3B34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+      </span>
+      <span class="logo-text">Umair Ticket Wala</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#live" class="hide-m">Live Fares</a>
+      <a href="hotels.html" class="hide-m">Hotels</a>
+      <a href="index.html#packages" class="hide-m">Packages</a>
+      <a href="#" class="btn btn-gold" data-wa="Assalam o Alaikum, I would like to know about Umrah hotels.">WhatsApp Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="wrap">
+    <div class="eyebrow" style="color:var(--gold)">Makkah · Madinah</div>
+    <h1>Umrah hotels, fully transparent</h1>
+    <p>Real photos, real walking distance to the Haram, and the exact price for your group — private room or sharing.</p>
+  </div>
+</section>
+
+<div class="controls" role="region" aria-label="Hotel filters">
+  <div class="tabs">
+    <button type="button" class="tab" data-city="Makkah" aria-pressed="true">Makkah</button>
+    <button type="button" class="tab" data-city="Madinah" aria-pressed="false">Madinah</button>
+  </div>
+  <div class="ctrl-grid">
+    <label>Travellers
+      <select id="cPeople">
+        <option value="1">1 person</option><option value="2" selected>2 people</option><option value="3">3 people</option>
+        <option value="4">4 people</option><option value="5">5 people</option><option value="6">6 people</option>
+      </select>
+    </label>
+    <label>Room
+      <select id="cRoom">
+        <option value="private">Private room</option>
+        <option value="sharing">Sharing</option>
+      </select>
+    </label>
+    <label>Nights
+      <select id="cNights">
+        <option>3</option><option>4</option><option selected>5</option><option>6</option><option>7</option><option>8</option>
+        <option>10</option><option>12</option><option>14</option><option>15</option><option>20</option>
+      </select>
+    </label>
+    <label>Sort by
+      <select id="cSort">
+        <option value="near">Closest</option>
+        <option value="cheap">Lowest price</option>
+      </select>
+    </label>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="notice" id="sampleNote" hidden>Sample data — these example hotels show how the page works. Real hotels, photos and rates are being added.</div>
+  <p class="meta-line" id="metaLine">Loading hotels…</p>
+  <div class="grid" id="grid"></div>
+</main>
+
+<dialog id="hotelDlg" aria-labelledby="dlgTitle">
+  <div class="m-head">
+    <div>
+      <div class="stars" id="dStars"></div>
+      <h2 id="dlgTitle"></h2>
+      <div class="h-sub" id="dSub"></div>
+    </div>
+    <button type="button" class="x" id="dClose" aria-label="Close">×</button>
+  </div>
+  <div class="m-body">
+    <div class="gallery" id="dGallery"></div>
+    <div class="facts" id="dFacts"></div>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:10px">Rooms and prices</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th></th><th>Room</th><th>Per night</th><th class="col-rooms">Rooms needed</th><th>Per person</th><th>Total</th></tr></thead>
+          <tbody id="dRooms"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="total-box">
+      <div><small id="dPickText">Selected room</small><div class="t" id="dTotal"></div></div>
+      <a href="#" class="btn btn-gold" id="dBook" target="_blank" rel="noopener">Book on WhatsApp</a>
+    </div>
+    <p class="fine" id="dFine"></p>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> Umair Ticket Wala · Prices are estimates in PKR and are confirmed on WhatsApp before booking.</div>
+</footer>
+
+<a href="#" class="wa-float" aria-label="Chat on WhatsApp" data-wa="Assalam o Alaikum, I would like to know about Umrah hotels.">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg>
+</a>
+
+<script>
+  // ============================================================
+  // SETTINGS — sirf yahan badlein
+  // ============================================================
+  var WHATSAPP_NUMBER = "92XXXXXXXXXX";   // index.html wala hi number
+  // Google Sheet ke "Hotels" tab ka published CSV link (khaali ho to sample data)
+  var HOTELS_CSV_URL = "";
+  // Google Sheet ke "Website" tab ka published CSV link (SAR rate wahan se aata hai)
+  var SETTINGS_CSV_URL = "";
+  var SAR_RATE_FALLBACK = 77;              // jab tak Sheet na jure, yahi rate
+
+  // Room types — Sheet ke column naam bilkul yahi hain
+  var ROOMS = [
+    { key: "Private Double", label: "Private room · 2 beds", occ: 2, private: true },
+    { key: "Private Triple", label: "Private room · 3 beds", occ: 3, private: true },
+    { key: "Private Quad",   label: "Private room · 4 beds", occ: 4, private: true },
+    { key: "Sharing 2", label: "Sharing · 2 per room", occ: 2, private: false },
+    { key: "Sharing 3", label: "Sharing · 3 per room", occ: 3, private: false },
+    { key: "Sharing 4", label: "Sharing · 4 per room", occ: 4, private: false }
+  ];
+
+  // Namoona data — jab tak Sheet ka link na lage (saaf "Sample" likha hai)
+  var SAMPLE = [
+    { "Hotel ID":"S-01","City":"Makkah","Hotel Name":"Sample Hotel A (example)","Stars":"4","Distance to Haram (m)":"450","Walk (min)":"6","Google Maps Link":"","Image 1":"","Image 2":"","Image 3":"",
+      "Private Double":"600","Private Triple":"720","Private Quad":"860","Sharing 2":"","Sharing 3":"","Sharing 4":"40","Breakfast":"No","Notes":"","Active":"Yes","Last Updated":"2026-10-05" },
+    { "Hotel ID":"S-02","City":"Makkah","Hotel Name":"Sample Hotel B (example)","Stars":"3","Distance to Haram (m)":"1200","Walk (min)":"15","Google Maps Link":"","Image 1":"","Image 2":"","Image 3":"",
+      "Private Double":"350","Private Triple":"420","Private Quad":"480","Sharing 2":"","Sharing 3":"35","Sharing 4":"28","Breakfast":"No","Notes":"Free shuttle to the Haram","Active":"Yes","Last Updated":"2026-10-05" },
+    { "Hotel ID":"S-03","City":"Madinah","Hotel Name":"Sample Hotel C (example)","Stars":"4","Distance to Haram (m)":"250","Walk (min)":"4","Google Maps Link":"","Image 1":"","Image 2":"","Image 3":"",
+      "Private Double":"500","Private Triple":"620","Private Quad":"740","Sharing 2":"","Sharing 3":"","Sharing 4":"45","Breakfast":"Yes","Notes":"","Active":"Yes","Last Updated":"2026-10-05" }
+  ];
+
+  // ============================================================
+  var state = { city: "Makkah", hotels: [], sar: SAR_RATE_FALLBACK, sample: false, current: null, pick: null };
+
+  function waLink(msg){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg); }
+  function pkr(n){ return "PKR " + Math.round(n).toLocaleString("en-PK"); }
+  function num(v){ var n = parseFloat(String(v == null ? "" : v).replace(/[^0-9.]/g, "")); return isNaN(n) ? null : n; }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+  function safeUrl(u){ u = String(u || "").trim(); return /^https:\/\//i.test(u) ? u : ""; }
+  function wireWa(root){
+    (root || document).querySelectorAll("[data-wa]").forEach(function(el){
+      el.href = waLink(el.getAttribute("data-wa")); el.target = "_blank"; el.rel = "noopener";
+    });
+  }
+
+  // CSV parhne wala (quotes aur commas ke saath)
+  function parseCSV(text){
+    var rows = [], row = [], cur = "", q = false;
+    for (var i = 0; i < text.length; i++){
+      var c = text[i];
+      if (q){
+        if (c === '"'){ if (text[i+1] === '"'){ cur += '"'; i++; } else q = false; }
+        else cur += c;
+      } else {
+        if (c === '"') q = true;
+        else if (c === ","){ row.push(cur); cur = ""; }
+        else if (c === "\n"){ row.push(cur); rows.push(row); row = []; cur = ""; }
+        else if (c !== "\r") cur += c;
+      }
+    }
+    if (cur !== "" || row.length){ row.push(cur); rows.push(row); }
+    if (!rows.length) return [];
+    var head = rows[0].map(function(h){ return h.trim(); });
+    return rows.slice(1).filter(function(r){ return r.some(function(x){ return x.trim() !== ""; }); }).map(function(r){
+      var o = {}; head.forEach(function(h, j){ o[h] = (r[j] || "").trim(); }); return o;
+    });
+  }
+
+  // Kamre ka hisaab: kitne kamre, fi banda, total
+  function roomCalc(h, room, people, nights){
+    var rate = num(h[room.key]);
+    if (rate === null || rate <= 0) return null;
+    var rooms, perNightTotal;
+    if (room.private){
+      rooms = Math.ceil(people / room.occ);
+      perNightTotal = rooms * rate;
+    } else {
+      rooms = null;
+      perNightTotal = rate * people;
+    }
+    var perNightTotalPkr = perNightTotal * state.sar;
+    return {
+      rateSar: rate,
+      rooms: rooms,
+      perPersonNight: perNightTotalPkr / people,
+      total: perNightTotalPkr * nights
+    };
+  }
+
+  // Customer ki pasand ke hisaab se sab se sasta room (card par dikhane ke liye)
+  function bestFor(h, people, kind){
+    var best = null;
+    ROOMS.forEach(function(r){
+      if ((kind === "private") !== r.private) return;
+      var c = roomCalc(h, r, people, 1);
+      if (c && (!best || c.perPersonNight < best.calc.perPersonNight)) best = { room: r, calc: c };
+    });
+    return best;
+  }
+
+  function render(){
+    var people = +document.getElementById("cPeople").value;
+    var kind = document.getElementById("cRoom").value;
+    var nights = +document.getElementById("cNights").value;
+    var sort = document.getElementById("cSort").value;
+    var grid = document.getElementById("grid");
+    var place = state.city === "Makkah" ? "Masjid al-Haram" : "Masjid an-Nabawi";
+
+    var list = state.hotels.filter(function(h){ return h.City === state.city; }).map(function(h){
+      return { h: h, best: bestFor(h, people, kind), dist: num(h["Distance to Haram (m)"]) };
+    });
+    list.sort(function(a, b){
+      if (sort === "cheap"){
+        var pa = a.best ? a.best.calc.perPersonNight : Infinity, pb = b.best ? b.best.calc.perPersonNight : Infinity;
+        return pa - pb;
+      }
+      return (a.dist == null ? Infinity : a.dist) - (b.dist == null ? Infinity : b.dist);
+    });
+
+    document.getElementById("metaLine").textContent =
+      list.length + " hotel" + (list.length === 1 ? "" : "s") + " in " + state.city + " · prices for " + people + " " + (people === 1 ? "person" : "people") + ", " + nights + " nights · 1 SAR = PKR " + state.sar;
+
+    if (!list.length){
+      grid.innerHTML = '<div class="empty">Hotels in ' + esc(state.city) + ' are being added. <a href="#" data-wa="Assalam o Alaikum, please send me hotel options in ' + esc(state.city) + '.">Ask us on WhatsApp</a>.</div>';
+      wireWa(grid); return;
+    }
+
+    grid.innerHTML = list.map(function(x, i){
+      var h = x.h, img = safeUrl(h["Image 1"]);
+      var walk = num(h["Walk (min)"]);
+      var distTxt = x.dist != null ? (x.dist >= 1000 ? (x.dist/1000).toFixed(1) + " km" : Math.round(x.dist) + " m") + (walk ? " · " + walk + " min walk" : "") : "Distance coming soon";
+      var stars = num(h.Stars) ? new Array(Math.min(5, num(h.Stars)) + 1).join("★") : "";
+      var priceHtml = x.best
+        ? '<div><small>From, per person / night</small><div class="big">' + pkr(x.best.calc.perPersonNight) + '</div><small>' + esc(x.best.room.label) + ' · ' + pkr(x.best.calc.perPersonNight * nights) + ' for ' + nights + ' nights</small></div>'
+        : '<div><small>' + (kind === "private" ? "Private rooms" : "Sharing") + '</small><div class="big" style="font-size:17px">Price on request</div></div>';
+      return '<article class="hotel">' +
+        '<div class="photo">' + (img ? '<img src="' + esc(img) + '" alt="' + esc(h["Hotel Name"]) + '" loading="lazy" onerror="this.remove()">' : 'Photo coming soon') +
+          '<span class="dist">' + esc(distTxt) + '</span></div>' +
+        '<div class="h-body">' +
+          '<div class="stars">' + stars + '</div>' +
+          '<div class="h-name">' + esc(h["Hotel Name"]) + '</div>' +
+          '<div class="h-sub">to ' + place + (h.Breakfast && /yes/i.test(h.Breakfast) ? ' · Breakfast included' : '') + (h.Notes ? ' · ' + esc(h.Notes) : '') + '</div>' +
+          '<div class="h-price">' + priceHtml + '<button type="button" class="btn btn-green" data-open="' + i + '">View rooms</button></div>' +
+        '</div></article>';
+    }).join("");
+
+    grid.querySelectorAll("[data-open]").forEach(function(b){
+      b.addEventListener("click", function(){ openHotel(list[+b.getAttribute("data-open")].h); });
+    });
+  }
+
+  function openHotel(h){
+    state.current = h;
+    var people = +document.getElementById("cPeople").value;
+    var kind = document.getElementById("cRoom").value;
+    var best = bestFor(h, people, kind) || bestFor(h, people, kind === "private" ? "sharing" : "private");
+    state.pick = best ? best.room.key : null;
+    fillDialog();
+    var d = document.getElementById("hotelDlg");
+    if (typeof d.showModal === "function") d.showModal(); else d.setAttribute("open", "");
+  }
+
+  function fillDialog(){
+    var h = state.current;
+    var people = +document.getElementById("cPeople").value;
+    var nights = +document.getElementById("cNights").value;
+    var place = h.City === "Makkah" ? "Masjid al-Haram" : "Masjid an-Nabawi";
+    var dist = num(h["Distance to Haram (m)"]), walk = num(h["Walk (min)"]);
+
+    document.getElementById("dlgTitle").textContent = h["Hotel Name"];
+    document.getElementById("dStars").textContent = num(h.Stars) ? new Array(Math.min(5, num(h.Stars)) + 1).join("★") : "";
+    document.getElementById("dSub").textContent = h.City + " · " + people + " " + (people === 1 ? "person" : "people") + " · " + nights + " nights";
+
+    var imgs = [h["Image 1"], h["Image 2"], h["Image 3"]].map(safeUrl);
+    document.getElementById("dGallery").innerHTML = imgs.map(function(u){
+      return u ? '<img src="' + esc(u) + '" alt="" loading="lazy">' : '<div class="ph">Photo coming soon</div>';
+    }).join("");
+
+    var facts = [];
+    if (dist != null) facts.push((dist >= 1000 ? (dist/1000).toFixed(1) + " km" : Math.round(dist) + " m") + " to " + place);
+    if (walk) facts.push(walk + " min walk");
+    if (h.Breakfast && /yes/i.test(h.Breakfast)) facts.push("Breakfast included");
+    if (h.Notes) facts.push(h.Notes);
+    var map = safeUrl(h["Google Maps Link"]);
+    document.getElementById("dFacts").innerHTML = facts.map(function(f){ return '<span class="fact">' + esc(f) + '</span>'; }).join("") +
+      (map ? '<a class="btn btn-outline-dark" href="' + esc(map) + '" target="_blank" rel="noopener">View on Map</a>' : '');
+
+    var rowsHtml = ROOMS.map(function(r){
+      var c = roomCalc(h, r, people, nights);
+      if (!c) return "";
+      var checked = state.pick === r.key ? " checked" : "";
+      return '<tr class="' + (checked ? "pick" : "") + '">' +
+        '<td><input class="radio" type="radio" name="roomPick" value="' + esc(r.key) + '"' + checked + ' aria-label="' + esc(r.label) + '"></td>' +
+        '<td><b>' + esc(r.label) + '</b><div class="h-sub">' + (r.private ? "Whole room for your group" : "Bed in a shared room") + '</div></td>' +
+        '<td class="num">' + c.rateSar + ' SAR<div class="h-sub">' + (r.private ? "per room" : "per person") + '</div></td>' +
+        '<td class="num col-rooms">' + (c.rooms ? c.rooms : "—") + '</td>' +
+        '<td class="num">' + pkr(c.perPersonNight) + '</td>' +
+        '<td class="num"><b>' + pkr(c.total) + '</b></td></tr>';
+    }).join("");
+    document.getElementById("dRooms").innerHTML = rowsHtml || '<tr><td colspan="6">Room rates for this hotel are on request.</td></tr>';
+    document.querySelectorAll('input[name="roomPick"]').forEach(function(inp){
+      inp.addEventListener("change", function(){ state.pick = inp.value; fillDialog(); });
+    });
+
+    var room = ROOMS.filter(function(r){ return r.key === state.pick; })[0];
+    var c = room ? roomCalc(h, room, people, nights) : null;
+    var book = document.getElementById("dBook");
+    var msg;
+    if (c){
+      document.getElementById("dPickText").textContent = room.label + " · " + nights + " nights · " + people + " " + (people === 1 ? "person" : "people");
+      document.getElementById("dTotal").textContent = pkr(c.total);
+      msg = "Assalam o Alaikum, I want to book this hotel:\n" + h["Hotel Name"] + " (" + h.City + ")\n" +
+        "Room: " + room.label + (c.rooms ? " × " + c.rooms : "") + "\n" +
+        "People: " + people + ", Nights: " + nights + "\n" +
+        "Website price: " + pkr(c.total) + " (estimated)";
+    } else {
+      document.getElementById("dPickText").textContent = "Price on request";
+      document.getElementById("dTotal").textContent = "Ask us";
+      msg = "Assalam o Alaikum, please send me rates for " + h["Hotel Name"] + " (" + h.City + "), " + people + " people, " + nights + " nights.";
+    }
+    book.href = waLink(msg);
+
+    document.getElementById("dFine").textContent =
+      "Hotel only — air ticket, visa and transport are separate. Prices in PKR at 1 SAR = PKR " + state.sar + ", estimated and confirmed on WhatsApp before booking." +
+      (h["Last Updated"] ? " Rates updated: " + h["Last Updated"] + "." : "");
+  }
+
+  // ---------- Events ----------
+  document.querySelectorAll(".tab").forEach(function(t){
+    t.addEventListener("click", function(){
+      state.city = t.getAttribute("data-city");
+      document.querySelectorAll(".tab").forEach(function(x){ x.setAttribute("aria-pressed", x === t ? "true" : "false"); });
+      render();
+    });
+  });
+  ["cPeople","cRoom","cNights","cSort"].forEach(function(id){ document.getElementById(id).addEventListener("change", render); });
+  document.getElementById("dClose").addEventListener("click", function(){ document.getElementById("hotelDlg").close(); });
+  document.getElementById("hotelDlg").addEventListener("click", function(e){ if (e.target === this) this.close(); });
+
+  // ---------- Data lana ----------
+  function useSample(){ state.hotels = SAMPLE; state.sample = true; document.getElementById("sampleNote").hidden = false; }
+
+  function loadSettings(){
+    if (!SETTINGS_CSV_URL) return Promise.resolve();
+    return fetch(SETTINGS_CSV_URL).then(function(r){ return r.text(); }).then(function(t){
+      parseCSV(t).forEach(function(row){
+        if (/sar/i.test(row.Setting || "") && num(row.Value)) state.sar = num(row.Value);
+      });
+    }).catch(function(){});
+  }
+  function loadHotels(){
+    if (!HOTELS_CSV_URL){ useSample(); return Promise.resolve(); }
+    return fetch(HOTELS_CSV_URL).then(function(r){ return r.text(); }).then(function(t){
+      var rows = parseCSV(t).filter(function(h){ return /^yes$/i.test(h.Active || "") && h["Hotel Name"] && !/^EX-/i.test(h["Hotel ID"] || ""); });
+      if (rows.length){ state.hotels = rows; } else { useSample(); }
+    }).catch(useSample);
+  }
+
+  // URL se shehar chunna: hotels.html?city=Madinah
+  (function(){
+    var m = /[?&]city=(Makkah|Madinah)/i.exec(location.search);
+    if (m){
+      state.city = m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase();
+      document.querySelectorAll(".tab").forEach(function(x){ x.setAttribute("aria-pressed", x.getAttribute("data-city") === state.city ? "true" : "false"); });
+    }
+  })();
+
+  wireWa(document);
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  Promise.all([loadSettings(), loadHotels()]).then(render);
+</script>
+</body>
+</html>
