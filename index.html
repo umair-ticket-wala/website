@@ -104,6 +104,20 @@
   .skeleton{display:inline-block;width:140px;height:28px;border-radius:8px;background:linear-gradient(90deg,#EEF1EF 25%,#F6F8F7 50%,#EEF1EF 75%);background-size:200% 100%;animation:sk 1.2s infinite}
   @keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
 
+  /* ===== Cheapest days ===== */
+  .cd-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:760px;margin:0 auto 22px}
+  .cd-controls label{color:var(--muted)}
+  .cd-controls select{border:1px solid #CDD6D3;background:var(--white);color:var(--ink)}
+  @media (max-width:560px){ .cd-controls{grid-template-columns:1fr 1fr} .cd-controls label:last-child{grid-column:1/-1} }
+  .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .day{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:left;font-family:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px;width:100%}
+  .day:hover{border-color:var(--green)}
+  .day .d{font-weight:800;font-size:15px}
+  .day .p{font-family:'Sora',sans-serif;font-weight:800;font-size:20px;color:var(--green)}
+  .day .a{font-size:13px;color:var(--soft)}
+  .day.best{border:2px solid var(--gold);background:#FFFBF0}
+  .day .tagbest{align-self:flex-start;font-size:11px;font-weight:800;background:var(--gold);color:var(--green);padding:2px 8px;border-radius:999px}
+
   /* ===== Search results ===== */
   #results{scroll-margin-top:90px}
   .res-box{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px}
@@ -187,6 +201,7 @@
     </a>
     <nav class="nav-links">
       <a href="#live" class="hide-m">Live Fares</a>
+      <a href="#cheapest" class="hide-m">Cheapest Days</a>
       <a href="hotels.html" class="hide-m">Hotels</a>
       <a href="#packages" class="hide-m">Umrah Packages</a>
       <a href="#alert" class="hide-m">Fare Alert</a>
@@ -308,6 +323,34 @@
     </div>
     <div class="fare-cards" id="fareCards"></div>
     <p class="disclaimer" style="text-align:center">Estimated price per person in PKR. Your city not listed? Use the search above — we cover all major airports in Pakistan.</p>
+  </div>
+</section>
+
+<!-- ===== CHEAPEST DAYS (Travelpayouts) ===== -->
+<section class="block" id="cheapest">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Plan smart</div>
+      <h2>Cheapest days to fly</h2>
+      <p>Pick your city and month to see which days have the lowest fares. Tap a day to check today's live return price.</p>
+    </div>
+    <div class="cd-controls">
+      <label>From
+        <select id="cdFrom">
+          <option value="MUX">Multan</option><option value="LHE">Lahore</option><option value="ISB">Islamabad</option><option value="KHI">Karachi</option>
+          <option value="SKT">Sialkot</option><option value="LYP">Faisalabad</option><option value="PEW">Peshawar</option><option value="UET">Quetta</option>
+          <option value="SKZ">Sukkur</option><option value="RYK">Rahim Yar Khan</option><option value="DEA">Dera Ghazi Khan</option><option value="BHV">Bahawalpur</option>
+        </select>
+      </label>
+      <label>To
+        <select id="cdTo"><option value="JED">Jeddah</option><option value="MED">Madinah</option></select>
+      </label>
+      <label>Month
+        <select id="cdMonth"></select>
+      </label>
+    </div>
+    <div class="days" id="cdDays"></div>
+    <p class="disclaimer" style="text-align:center">One-way fares recently found by travellers, per person in PKR. They can change — tap a day for today's live price.</p>
   </div>
 </section>
 
@@ -686,8 +729,65 @@
     window.open(waLink(msg), "_blank");
   });
 
+  // ---------- Cheapest days (Travelpayouts) ----------
+  (function(){
+    var mSel = document.getElementById("cdMonth");
+    var start = new Date(Date.now() + 5*3600*1000);
+    for (var i = 0; i < 12; i++){
+      var d = new Date(Date.UTC(start.getUTCFullYear(), start.getUTCMonth() + i, 1));
+      var v = d.toISOString().slice(0,7);
+      var o = document.createElement("option");
+      o.value = v; o.textContent = d.toLocaleDateString("en-GB", { month:"long", year:"numeric", timeZone:"UTC" });
+      mSel.appendChild(o);
+    }
+    mSel.selectedIndex = 1; // agla mahina
+  })();
+
+  function loadCheapest(){
+    var from = document.getElementById("cdFrom").value;
+    var to = document.getElementById("cdTo").value;
+    var month = document.getElementById("cdMonth").value;
+    var box = document.getElementById("cdDays");
+    box.innerHTML = '<div class="notice">Finding the cheapest days… <span class="skeleton" style="width:80px;height:14px;vertical-align:middle"></span></div>';
+
+    fetch("/api/cheapest?from=" + from + "&to=" + to + "&month=" + month)
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        if (!d.ok || !d.days || !d.days.length){
+          box.innerHTML = '<div class="notice">No recent fares found for this month yet. <a href="#" data-wa="' +
+            esc("Assalam o Alaikum, please tell me the cheapest days to fly from " + CITY[from] + " to " + CITY[to] + " in " + mSelText() + ".") + '">Ask us on WhatsApp</a> or use the live search above.</div>';
+          wireWa(box); return;
+        }
+        box.innerHTML = d.days.map(function(x, i){
+          var best = x.price === d.cheapest;
+          return '<button type="button" class="day' + (best ? ' best' : '') + '" data-i="' + i + '">' +
+            (best ? '<span class="tagbest">Cheapest</span>' : '') +
+            '<span class="d">' + esc(niceDate(x.date)) + '</span>' +
+            '<span class="p">' + pkr(x.price) + '</span>' +
+            '<span class="a">' + esc(x.airline) + (x.stops === 0 ? ' · Direct' : x.stops ? ' · ' + x.stops + ' stop' + (x.stops > 1 ? 's' : '') : '') + '</span>' +
+          '</button>';
+        }).join("");
+        box.querySelectorAll(".day").forEach(function(btn){
+          btn.addEventListener("click", function(){
+            var x = d.days[+btn.getAttribute("data-i")];
+            document.getElementById("sFrom").value = from;
+            document.getElementById("sTo").value = to;
+            document.getElementById("sDate").value = x.date;
+            document.getElementById("sTrip").value = "14";
+            runSearch();
+          });
+        });
+      })
+      .catch(function(){
+        box.innerHTML = '<div class="notice">Cheapest days are unavailable right now. Please use the live search above.</div>';
+      });
+  }
+  function mSelText(){ var s = document.getElementById("cdMonth"); return s.options[s.selectedIndex].textContent; }
+  ["cdFrom","cdTo","cdMonth"].forEach(function(id){ document.getElementById(id).addEventListener("change", loadCheapest); });
+
   wireWa(document);
   loadHomeCards();
+  loadCheapest();
   document.getElementById("yr").textContent = new Date().getFullYear();
 </script>
 </body>
