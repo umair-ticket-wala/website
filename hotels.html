@@ -99,6 +99,19 @@
   .total-box small{display:block;color:var(--mint);font-size:13px;font-weight:600}
   .fine{font-size:13px;color:var(--soft);margin:0}
 
+  /* Directory (saare hotels ki list) */
+  .dir{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px;margin:10px 0 40px}
+  .dir-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:14px}
+  .dir-head h2{font-size:22px}
+  .dir-head input{max-width:280px}
+  .dir table{min-width:0}
+  .dir td a.lnk{color:var(--green);font-weight:700}
+  .dir .ask{min-height:38px;padding:6px 12px;font-size:13px}
+  @media (max-width:560px){ .dir .col-walk{display:none} .dir .ask{padding:6px 10px} }
+  .photo .ph-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .photo img{position:relative;z-index:1}
+  .photo .dist{z-index:2}
+
   footer{background:var(--green-dark);color:var(--mint);padding:36px 0;margin-top:40px;font-size:14px}
   .wa-float{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:50%;background:#1F8F4E;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:30}
 </style>
@@ -167,6 +180,25 @@
   <div class="notice" id="sampleNote" hidden>Sample data — these example hotels show how the page works. Real hotels, photos and rates are being added.</div>
   <p class="meta-line" id="metaLine">Loading hotels…</p>
   <div class="grid" id="grid"></div>
+  <section class="dir" id="dirBox" hidden>
+    <div class="dir-head">
+      <div>
+        <div class="eyebrow">All hotels</div>
+        <h2 id="dirTitle">All hotels near the Haram</h2>
+        <div class="h-sub" id="dirSub">Walking distance measured on the map. Ask us for today's rate on any hotel.</div>
+      </div>
+      <label style="flex:1 1 220px;max-width:280px">Search hotel
+        <input type="search" id="dirSearch" placeholder="Type a hotel name">
+      </label>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Hotel</th><th>Distance</th><th class="col-walk">Walk</th><th>Map</th><th></th></tr></thead>
+        <tbody id="dirRows"></tbody>
+      </table>
+    </div>
+    <p style="text-align:center;margin:14px 0 0"><button type="button" class="btn btn-outline-dark" id="dirMore" hidden>Show more hotels</button></p>
+  </section>
 </main>
 
 <dialog id="hotelDlg" aria-labelledby="dlgTitle">
@@ -238,7 +270,7 @@
   ];
 
   // ============================================================
-  var state = { city: "Makkah", hotels: [], sar: SAR_RATE_FALLBACK, sample: false, current: null, pick: null };
+  var state = { city: "Makkah", hotels: [], listed: [], dirLimit: 50, sar: SAR_RATE_FALLBACK, sample: false, current: null, pick: null };
 
   function waLink(msg){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg); }
   function pkr(n){ return "PKR " + Math.round(n).toLocaleString("en-PK"); }
@@ -306,6 +338,14 @@
     return best;
   }
 
+  // Tasveer: Sheet ka link, warna GitHub ke images folder se ID ke naam par (MAK-001-1.jpg)
+  function imgFor(h, n){
+    var u = safeUrl(h["Image " + n]);
+    if (u) return u;
+    var id = String(h["Hotel ID"] || "").trim();
+    return id ? "images/" + encodeURIComponent(id) + "-" + n + ".jpg" : "";
+  }
+
   function render(){
     var people = +document.getElementById("cPeople").value;
     var kind = document.getElementById("cRoom").value;
@@ -329,12 +369,13 @@
       list.length + " hotel" + (list.length === 1 ? "" : "s") + " in " + state.city + " · prices for " + people + " " + (people === 1 ? "person" : "people") + ", " + nights + " nights · 1 SAR = PKR " + state.sar;
 
     if (!list.length){
-      grid.innerHTML = '<div class="empty">Hotels in ' + esc(state.city) + ' are being added. <a href="#" data-wa="Assalam o Alaikum, please send me hotel options in ' + esc(state.city) + '.">Ask us on WhatsApp</a>.</div>';
-      wireWa(grid); return;
+      document.getElementById("metaLine").textContent = "";
+      grid.innerHTML = '<div class="empty">Featured hotels with full prices in ' + esc(state.city) + ' are coming soon. Browse all hotels below or <a href="#" data-wa="Assalam o Alaikum, please send me hotel options in ' + esc(state.city) + '.">ask us on WhatsApp</a>.</div>';
+      wireWa(grid); renderDirectory(); return;
     }
 
     grid.innerHTML = list.map(function(x, i){
-      var h = x.h, img = safeUrl(h["Image 1"]);
+      var h = x.h, img = imgFor(h, 1);
       var walk = num(h["Walk (min)"]);
       var distTxt = x.dist != null ? (x.dist >= 1000 ? (x.dist/1000).toFixed(1) + " km" : Math.round(x.dist) + " m") + (walk ? " · " + walk + " min walk" : "") : "Distance coming soon";
       var stars = num(h.Stars) ? new Array(Math.min(5, num(h.Stars)) + 1).join("★") : "";
@@ -342,7 +383,7 @@
         ? '<div><small>From, per person / night</small><div class="big">' + pkr(x.best.calc.perPersonNight) + '</div><small>' + esc(x.best.room.label) + ' · ' + pkr(x.best.calc.perPersonNight * nights) + ' for ' + nights + ' nights</small></div>'
         : '<div><small>' + (kind === "private" ? "Private rooms" : "Sharing") + '</small><div class="big" style="font-size:17px">Price on request</div></div>';
       return '<article class="hotel">' +
-        '<div class="photo">' + (img ? '<img src="' + esc(img) + '" alt="' + esc(h["Hotel Name"]) + '" loading="lazy" onerror="this.remove()">' : 'Photo coming soon') +
+        '<div class="photo"><span class="ph-txt">Photo coming soon</span>' + (img ? '<img src="' + esc(img) + '" alt="' + esc(h["Hotel Name"]) + '" loading="lazy" onerror="this.remove()">' : '') +
           '<span class="dist">' + esc(distTxt) + '</span></div>' +
         '<div class="h-body">' +
           '<div class="stars">' + stars + '</div>' +
@@ -355,6 +396,34 @@
     grid.querySelectorAll("[data-open]").forEach(function(b){
       b.addEventListener("click", function(){ openHotel(list[+b.getAttribute("data-open")].h); });
     });
+    renderDirectory();
+  }
+
+  // ---------- Directory: saare hotels (Active = List) ----------
+  function renderDirectory(){
+    var box = document.getElementById("dirBox");
+    var q = document.getElementById("dirSearch").value.trim().toLowerCase();
+    var place = state.city === "Makkah" ? "the Haram" : "Masjid an-Nabawi";
+    var all = state.listed.filter(function(h){ return h.City === state.city; });
+    if (!all.length){ box.hidden = true; return; }
+    box.hidden = false;
+    document.getElementById("dirTitle").textContent = "All hotels near " + place + " (" + all.length + ")";
+    var rows = all.filter(function(h){ return !q || String(h["Hotel Name"]).toLowerCase().indexOf(q) >= 0; })
+      .sort(function(a, b){ return (num(a["Distance to Haram (m)"]) || 1e9) - (num(b["Distance to Haram (m)"]) || 1e9); });
+    var shown = rows.slice(0, state.dirLimit);
+    document.getElementById("dirRows").innerHTML = shown.length ? shown.map(function(h){
+      var d = num(h["Distance to Haram (m)"]), w = num(h["Walk (min)"]);
+      var dTxt = d != null ? (d >= 1000 ? (d/1000).toFixed(1) + " km" : Math.round(d) + " m") : "—";
+      var stars = num(h.Stars) ? ' <span class="stars">' + new Array(Math.min(5, num(h.Stars)) + 1).join("★") + '</span>' : "";
+      var map = safeUrl(h["Google Maps Link"]);
+      var msg = "Assalam o Alaikum, please send me today's rate for " + h["Hotel Name"] + " (" + h.City + ").";
+      return '<tr><td><b>' + esc(h["Hotel Name"]) + '</b>' + stars + '</td>' +
+        '<td class="num">' + dTxt + '</td>' +
+        '<td class="num col-walk">' + (w ? w + " min" : "—") + '</td>' +
+        '<td>' + (map ? '<a class="lnk" href="' + esc(map) + '" target="_blank" rel="noopener">Map</a>' : '—') + '</td>' +
+        '<td><a class="btn btn-green ask" href="' + waLink(msg) + '" target="_blank" rel="noopener">Ask rate</a></td></tr>';
+    }).join("") : '<tr><td colspan="5">No hotel found with that name.</td></tr>';
+    document.getElementById("dirMore").hidden = rows.length <= state.dirLimit;
   }
 
   function openHotel(h){
@@ -379,9 +448,9 @@
     document.getElementById("dStars").textContent = num(h.Stars) ? new Array(Math.min(5, num(h.Stars)) + 1).join("★") : "";
     document.getElementById("dSub").textContent = h.City + " · " + people + " " + (people === 1 ? "person" : "people") + " · " + nights + " nights";
 
-    var imgs = [h["Image 1"], h["Image 2"], h["Image 3"]].map(safeUrl);
+    var imgs = [imgFor(h, 1), imgFor(h, 2), imgFor(h, 3)];
     document.getElementById("dGallery").innerHTML = imgs.map(function(u){
-      return u ? '<img src="' + esc(u) + '" alt="" loading="lazy">' : '<div class="ph">Photo coming soon</div>';
+      return u ? '<img src="' + esc(u) + '" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;ph&quot;>Photo coming soon</div>\'">' : '<div class="ph">Photo coming soon</div>';
     }).join("");
 
     var facts = [];
@@ -436,11 +505,13 @@
   // ---------- Events ----------
   document.querySelectorAll(".tab").forEach(function(t){
     t.addEventListener("click", function(){
-      state.city = t.getAttribute("data-city");
+      state.city = t.getAttribute("data-city"); state.dirLimit = 50;
       document.querySelectorAll(".tab").forEach(function(x){ x.setAttribute("aria-pressed", x === t ? "true" : "false"); });
       render();
     });
   });
+  document.getElementById("dirSearch").addEventListener("input", function(){ state.dirLimit = 50; renderDirectory(); });
+  document.getElementById("dirMore").addEventListener("click", function(){ state.dirLimit += 50; renderDirectory(); });
   ["cPeople","cRoom","cNights","cSort"].forEach(function(id){ document.getElementById(id).addEventListener("change", render); });
   document.getElementById("dClose").addEventListener("click", function(){ document.getElementById("hotelDlg").close(); });
   document.getElementById("hotelDlg").addEventListener("click", function(e){ if (e.target === this) this.close(); });
@@ -459,8 +530,10 @@
   function loadHotels(){
     if (!HOTELS_CSV_URL){ useSample(); return Promise.resolve(); }
     return fetch(HOTELS_CSV_URL).then(function(r){ return r.text(); }).then(function(t){
-      var rows = parseCSV(t).filter(function(h){ return /^yes$/i.test(h.Active || "") && h["Hotel Name"] && !/^EX-/i.test(h["Hotel ID"] || ""); });
-      if (rows.length){ state.hotels = rows; } else { useSample(); }
+      var all = parseCSV(t).filter(function(h){ return h["Hotel Name"] && !/^EX-/i.test(h["Hotel ID"] || ""); });
+      state.hotels = all.filter(function(h){ return /^yes$/i.test(h.Active || ""); });
+      state.listed = all.filter(function(h){ return /^(yes|list)$/i.test(h.Active || ""); });
+      if (!state.hotels.length && !state.listed.length){ useSample(); }
     }).catch(useSample);
   }
 
