@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Umair Ticket Wala – Honest Umrah Fares from Pakistan</title>
-<meta name="description" content="Honest Umrah fares and packages from Multan, Lahore, Islamabad and Karachi. Every rupee explained — ticket, visa, hotel and transport shown separately. Free fare alerts on WhatsApp.">
+<meta name="description" content="Live Umrah air fares from Karachi, Lahore, Islamabad, Multan and more to Jeddah and Madinah. Every rupee explained — ticket, visa, hotel and transport shown separately. Free fare alerts on WhatsApp.">
 <meta property="og:title" content="Umair Ticket Wala – Honest Umrah Fares">
-<meta property="og:description" content="Umrah tickets and packages with full price breakdown. No hidden charges.">
+<meta property="og:description" content="Live Umrah fares and packages with full price breakdown. No hidden charges.">
 <meta property="og:url" content="https://www.umairticketwala.com/">
 <meta property="og:type" content="website">
 <link rel="canonical" href="https://www.umairticketwala.com/">
@@ -30,6 +30,7 @@
     --gold:#D9A441; --gold-text:#7A5A1C;
     --ink:#17211E; --muted:#4A5753; --soft:#5B6864;
     --line:#E3E8E6; --bg:#F7F5F0; --white:#FFFFFF; --mint:#C9DAD5;
+    --red-bg:#FBE9E7; --red-ink:#9A2F1F; --ok-bg:#E3F2EA; --ok-ink:#1D5E3A;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -44,6 +45,7 @@
   .btn-outline{border:1.5px solid #6C948B;color:var(--white);background:transparent}
   .btn-outline-dark{border:1.5px solid var(--green);color:var(--green);background:transparent}
   .btn:hover{filter:brightness(.95)}
+  .btn[disabled]{opacity:.6;cursor:wait}
   label{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700}
   input,select{height:48px;border-radius:10px;padding:0 12px;font-size:16px;font-family:inherit;width:100%}
 
@@ -62,12 +64,12 @@
   /* ===== Hero ===== */
   .hero{background:var(--green);color:var(--white);padding:48px 0 96px}
   .hero-grid{display:flex;flex-wrap:wrap;gap:40px;align-items:center}
-  .hero-copy{flex:1 1 460px;min-width:0}
+  .hero-copy{flex:1 1 440px;min-width:0}
   .pill{display:inline-block;border:1px solid #3E6B62;color:var(--gold);font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:8px 14px;border-radius:999px}
   .hero h1{font-weight:800;font-size:clamp(36px,6vw,56px);line-height:1.05;margin:20px 0 16px}
   .hero p.lead{font-size:18px;line-height:1.6;color:var(--mint);margin:0 0 28px;max-width:540px}
   .hero-btns{display:flex;flex-wrap:wrap;gap:12px}
-  .card-form{flex:1 1 380px;min-width:0;background:var(--white);color:var(--ink);border-radius:20px;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:14px}
+  .card-form{flex:1 1 400px;min-width:0;background:var(--white);color:var(--ink);border-radius:20px;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.25);display:flex;flex-direction:column;gap:14px}
   .card-form h2{font-size:22px}
   .card-form label{color:var(--muted)}
   .card-form input,.card-form select{border:1px solid #CDD6D3;background:var(--white);color:var(--ink)}
@@ -86,7 +88,41 @@
   section.block{padding:80px 0 20px}
   .sec-head{text-align:center;margin-bottom:32px}
   .sec-head h2{font-size:clamp(28px,4vw,38px);margin:8px 0 10px}
-  .sec-head p{margin:0 auto;max-width:620px;color:var(--muted);font-size:17px}
+  .sec-head p{margin:0 auto;max-width:640px;color:var(--muted);font-size:17px}
+
+  /* ===== Live fares: home cards ===== */
+  .fare-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .fare-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;text-align:left;font-family:inherit;color:inherit;cursor:pointer;width:100%}
+  .fare-card:hover{border-color:var(--green)}
+  .route{display:flex;align-items:center;justify-content:space-between;font-family:'Sora',sans-serif;font-weight:800;font-size:22px}
+  .route small{display:block;font-family:'Manrope',sans-serif;font-weight:600;font-size:13px;color:var(--soft)}
+  .fare-price{font-family:'Sora',sans-serif;font-weight:800;font-size:26px;color:var(--green);min-height:36px}
+  .fare-meta{font-size:13px;color:var(--soft)}
+  .badge{display:inline-block;font-weight:800;font-size:12px;padding:4px 10px;border-radius:999px;background:#EEF3F1;color:var(--green)}
+  .badge.high{background:var(--red-bg);color:var(--red-ink)}
+  .badge.low{background:var(--ok-bg);color:var(--ok-ink)}
+  .skeleton{display:inline-block;width:140px;height:28px;border-radius:8px;background:linear-gradient(90deg,#EEF1EF 25%,#F6F8F7 50%,#EEF1EF 75%);background-size:200% 100%;animation:sk 1.2s infinite}
+  @keyframes sk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+  /* ===== Search results ===== */
+  #results{scroll-margin-top:90px}
+  .res-box{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px}
+  .res-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+  .res-head h3{font-size:22px}
+  .res-list{display:flex;flex-direction:column;gap:12px}
+  .flight{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .flight img{width:40px;height:40px;object-fit:contain}
+  .f-air{font-weight:800}
+  .f-sub{font-size:14px;color:var(--soft)}
+  .f-right{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .f-price{font-family:'Sora',sans-serif;font-weight:800;font-size:22px;color:var(--green)}
+  .f-right .btn{min-height:42px;padding:8px 16px;font-size:14px}
+  .f-price{white-space:nowrap}
+  @media (max-width:640px){ .flight{grid-template-columns:auto 1fr} .f-right{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center;text-align:left} .f-price{font-size:19px} }
+  .notice{border-radius:12px;padding:14px 16px;font-size:15px;background:#EEF3F1;color:var(--ink)}
+  .notice.warn{background:var(--red-bg);color:var(--red-ink)}
+  .disclaimer{margin:14px 0 0;font-size:13px;color:var(--soft)}
+
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
   .pkg{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:24px;display:flex;flex-direction:column;gap:14px}
   .pkg-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
@@ -150,8 +186,8 @@
       <span class="logo-text">Umair Ticket Wala</span>
     </a>
     <nav class="nav-links">
+      <a href="#live" class="hide-m">Live Fares</a>
       <a href="#packages" class="hide-m">Umrah Packages</a>
-      <a href="#pricing" class="hide-m">Pricing</a>
       <a href="#alert" class="hide-m">Fare Alert</a>
       <a href="#faq" class="hide-m">FAQ</a>
       <a href="#" class="btn btn-gold" data-wa="Assalam o Alaikum, I would like to know about Umrah tickets and packages.">WhatsApp Us</a>
@@ -159,54 +195,76 @@
   </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO + LIVE SEARCH ===== -->
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="pill">Umrah · Hajj · Air Tickets</span>
       <h1>Honest Umrah fares.<br>No hidden charges.</h1>
-      <p class="lead">Every rupee explained — ticket, visa, hotel and transport shown separately. Real hotel photos, real distance from the Haram, and fare updates every week.</p>
+      <p class="lead">Check live air fares from your city to Jeddah or Madinah. Every rupee explained — ticket, visa, hotel and transport shown separately.</p>
       <div class="hero-btns">
-        <a href="#packages" class="btn btn-gold">View Umrah Packages</a>
+        <a href="#live" class="btn btn-gold">Today's Lowest Fares</a>
         <a href="#alert" class="btn btn-outline">Set a Fare Alert</a>
       </div>
     </div>
 
-    <form class="card-form" id="quoteForm">
-      <h2>Get today's fare</h2>
+    <form class="card-form" id="searchForm" novalidate>
+      <h2>Check live fares</h2>
       <div class="grid2">
         <label>From
-          <select name="from">
-            <option>Multan (MUX)</option><option>Lahore (LHE)</option><option>Islamabad (ISB)</option><option>Karachi (KHI)</option><option>Faisalabad (LYP)</option><option>Sialkot (SKT)</option><option>Peshawar (PEW)</option>
+          <select name="from" id="sFrom">
+            <option value="MUX">Multan (MUX)</option>
+            <option value="LHE">Lahore (LHE)</option>
+            <option value="ISB">Islamabad (ISB)</option>
+            <option value="KHI">Karachi (KHI)</option>
+            <option value="SKT">Sialkot (SKT)</option>
+            <option value="LYP">Faisalabad (LYP)</option>
+            <option value="PEW">Peshawar (PEW)</option>
+            <option value="UET">Quetta (UET)</option>
+            <option value="SKZ">Sukkur (SKZ)</option>
+            <option value="RYK">Rahim Yar Khan (RYK)</option>
+            <option value="DEA">Dera Ghazi Khan (DEA)</option>
+            <option value="BHV">Bahawalpur (BHV)</option>
           </select>
         </label>
         <label>To
-          <select name="to">
-            <option>Jeddah (JED)</option><option>Madinah (MED)</option>
+          <select name="to" id="sTo">
+            <option value="JED">Jeddah (JED)</option>
+            <option value="MED">Madinah (MED)</option>
           </select>
         </label>
-        <label>Travel month
-          <input type="month" name="month" required>
+        <label>Departure date
+          <input type="date" name="date" id="sDate" required>
         </label>
-        <label>Travellers
-          <select name="pax">
-            <option>1 Adult</option><option>2 Adults</option><option>3 Adults</option><option>Family (4+)</option>
+        <label>Trip
+          <select name="trip" id="sTrip">
+            <option value="14">Return · 14 days</option>
+            <option value="7">Return · 7 days</option>
+            <option value="10">Return · 10 days</option>
+            <option value="15">Return · 15 days</option>
+            <option value="21">Return · 21 days</option>
+            <option value="28">Return · 28 days</option>
+            <option value="0">One way</option>
           </select>
         </label>
       </div>
-      <label>What do you need?
-        <select name="need">
-          <option>Ticket only</option><option>Full Umrah package</option><option>Visa + hotel (no ticket)</option>
+      <label>Travellers (adults)
+        <select name="adults" id="sAdults">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option>
         </select>
       </label>
-      <button type="submit" class="btn btn-green">Get Fare on WhatsApp</button>
-      <p class="small-note">We reply with today's best rate on WhatsApp.</p>
+      <button type="submit" class="btn btn-green" id="searchBtn">Check Live Fares</button>
+      <p class="small-note">Estimated fares, updated through the day. Final price confirmed on WhatsApp before booking.</p>
     </form>
   </div>
 </section>
 
 <!-- ===== TRUST STRIP ===== -->
 <div class="trust">
+  <div class="trust-item">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+    <div><b>Live fares</b><span>Real airline prices, not old lists</span></div>
+  </div>
   <div class="trust-item">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M3 9h18M9 21V9"/></svg>
     <div><b>Itemised pricing</b><span>Nothing hidden in a package</span></div>
@@ -216,14 +274,41 @@
     <div><b>Real hotel distance</b><span>Measured to the Haram</span></div>
   </div>
   <div class="trust-item">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
-    <div><b>Weekly fare updates</b><span>We track fares so you don't have to</span></div>
-  </div>
-  <div class="trust-item">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0E3B34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
     <div><b>WhatsApp support</b><span>From booking until you're home</span></div>
   </div>
 </div>
+
+<!-- ===== SEARCH RESULTS (search ke baad nazar aata hai) ===== -->
+<section class="block" id="results" hidden>
+  <div class="wrap">
+    <div class="res-box">
+      <div class="res-head">
+        <div>
+          <div class="eyebrow">Live fares</div>
+          <h3 id="resTitle">Results</h3>
+          <div class="f-sub" id="resSub"></div>
+        </div>
+        <span class="badge" id="resLevel" hidden></span>
+      </div>
+      <div id="resBody" class="res-list"></div>
+      <p class="disclaimer">Prices are estimates in Pakistani rupees for all travellers, based on current airline fares, and can change at any time. We confirm the final price on WhatsApp before you pay.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TODAY'S LOWEST FARES (4 bare shehar) ===== -->
+<section class="block" id="live">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Updated daily</div>
+      <h2>Today's lowest Umrah fares</h2>
+      <p id="liveSub">Return fares to Jeddah for 14 days. Tap a city to see all flights.</p>
+    </div>
+    <div class="fare-cards" id="fareCards"></div>
+    <p class="disclaimer" style="text-align:center">Estimated price per person in PKR. Your city not listed? Use the search above — we cover all major airports in Pakistan.</p>
+  </div>
+</section>
 
 <!-- ===== PACKAGES ===== -->
 <section class="block" id="packages">
@@ -234,7 +319,6 @@
       <p>Rates change with airline fares and hotel availability, so we send you today's exact price with a full breakdown before you pay.</p>
     </div>
     <div class="cards">
-      <!-- Package 1 -->
       <article class="pkg">
         <div class="pkg-top"><h3>Economy</h3><span class="tag">15 days</span></div>
         <ul>
@@ -246,7 +330,6 @@
         <div class="price">Today's rate on request<small>Full price breakdown included</small></div>
         <a href="#" class="btn btn-green" data-wa="Assalam o Alaikum, please send me today's rate for the ECONOMY Umrah package (15 days).">Get Today's Price</a>
       </article>
-      <!-- Package 2 -->
       <article class="pkg">
         <div class="pkg-top"><h3>Standard</h3><span class="tag">21 days</span></div>
         <ul>
@@ -258,7 +341,6 @@
         <div class="price">Today's rate on request<small>Full price breakdown included</small></div>
         <a href="#" class="btn btn-green" data-wa="Assalam o Alaikum, please send me today's rate for the STANDARD Umrah package (21 days).">Get Today's Price</a>
       </article>
-      <!-- Package 3 -->
       <article class="pkg">
         <div class="pkg-top"><h3>Family</h3><span class="tag">15 days</span></div>
         <ul>
@@ -308,9 +390,12 @@
       <label>Your name
         <input type="text" name="name" placeholder="Full name" required>
       </label>
-      <label>City you're flying from
+      <label>Route
         <select name="route">
-          <option>Multan → Jeddah</option><option>Lahore → Jeddah</option><option>Islamabad → Jeddah</option><option>Karachi → Jeddah</option><option>Multan → Madinah</option><option>Lahore → Madinah</option><option>Islamabad → Madinah</option>
+          <option>Multan → Jeddah</option><option>Lahore → Jeddah</option><option>Islamabad → Jeddah</option><option>Karachi → Jeddah</option>
+          <option>Sialkot → Jeddah</option><option>Faisalabad → Jeddah</option><option>Peshawar → Jeddah</option>
+          <option>Multan → Madinah</option><option>Lahore → Madinah</option><option>Islamabad → Madinah</option><option>Karachi → Madinah</option>
+          <option>Other city (I'll tell you on WhatsApp)</option>
         </select>
       </label>
       <label>Travel month
@@ -331,7 +416,7 @@
     <div class="why">
       <div><div class="n">01</div><h3>Clear prices</h3><p>Ticket, visa, hotel and transport listed separately. You see the full cost before you pay.</p></div>
       <div><div class="n">02</div><h3>Real hotel details</h3><p>Actual photos and walking distance to the Haram, not brochure pictures.</p></div>
-      <div><div class="n">03</div><h3>Weekly fare updates</h3><p>We track fares and share the lowest ones on our social channels every week.</p></div>
+      <div><div class="n">03</div><h3>Live fare checks</h3><p>We track fares every day and tell you when it's a good time to book.</p></div>
       <div><div class="n">04</div><h3>Help on the ground</h3><p>Our WhatsApp support stays with you from departure until you are home.</p></div>
     </div>
   </div>
@@ -343,12 +428,12 @@
     <div class="sec-head"><h2>Common questions</h2></div>
     <div class="faq">
       <details>
-        <summary>How does booking work?</summary>
-        <p>Send us your city, travel month and number of travellers. We reply on WhatsApp with today's best rate and a full price breakdown. Once you confirm, we guide you through documents and payment step by step.</p>
+        <summary>Are the fares on this website live?</summary>
+        <p>Yes. Fares are checked against current airline prices and refreshed through the day. They are estimates, because airlines change prices often — we confirm the exact price on WhatsApp before you pay.</p>
       </details>
       <details>
-        <summary>Why don't you show a fixed price on the website?</summary>
-        <p>Airline fares and hotel rates change every day, sometimes every hour. Instead of showing an old price, we send you the real price for your dates so there are no surprises later.</p>
+        <summary>How does booking work?</summary>
+        <p>Pick a fare or package and tap the WhatsApp button. We reply with today's exact rate and a full price breakdown. Once you confirm, we guide you through documents and payment step by step.</p>
       </details>
       <details>
         <summary>How does the free fare alert work?</summary>
@@ -399,40 +484,196 @@
   // ============================================================
   var WHATSAPP_NUMBER = "92XXXXXXXXXX";
 
-  // WhatsApp ka link banata hai (message ke saath)
-  function waLink(msg){
-    return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg);
+  // Home page ke 4 bare shehar (roz ek dafa rate aata hai)
+  var HOME_ROUTES = [
+    { from: "KHI", city: "Karachi" },
+    { from: "LHE", city: "Lahore" },
+    { from: "ISB", city: "Islamabad" },
+    { from: "MUX", city: "Multan" }
+  ];
+  var HOME_DAYS_AHEAD = 21;   // aaj se kitne din baad ki rawangi
+  var HOME_TRIP_DAYS = 14;    // kitne din ka safar (wapsi)
+
+  var CITY = { KHI:"Karachi", LHE:"Lahore", ISB:"Islamabad", MUX:"Multan", SKT:"Sialkot", LYP:"Faisalabad", PEW:"Peshawar", UET:"Quetta", SKZ:"Sukkur", RYK:"Rahim Yar Khan", DEA:"Dera Ghazi Khan", BHV:"Bahawalpur", JED:"Jeddah", MED:"Madinah" };
+
+  // ---------- Madadgar functions ----------
+  function waLink(msg){ return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(msg); }
+  function pkr(n){ return "PKR " + Math.round(n).toLocaleString("en-PK"); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]; }); }
+
+  // Pakistan ke waqt ke hisaab se aaj + n din (YYYY-MM-DD)
+  function pkDatePlus(n){
+    var d = new Date(Date.now() + 5*3600*1000 + n*86400000);
+    return d.toISOString().slice(0,10);
   }
-
-  // Har us button/link par jis mein data-wa hai, WhatsApp khule
-  document.querySelectorAll("[data-wa]").forEach(function(el){
-    el.setAttribute("href", waLink(el.getAttribute("data-wa")));
-    el.setAttribute("target", "_blank");
-    el.setAttribute("rel", "noopener");
-  });
-
-  // Month ko "October 2026" jaisa padhne layak banata hai
+  function addDays(ymd, n){
+    var d = new Date(ymd + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0,10);
+  }
+  function niceDate(ymd){
+    var d = new Date(ymd + "T00:00:00Z");
+    return d.toLocaleDateString("en-GB", { day:"numeric", month:"short", year:"numeric", timeZone:"UTC" });
+  }
+  function hhmm(t){ return t ? String(t).slice(11,16) : ""; }
+  function dur(min){ if(!min) return ""; return Math.floor(min/60) + "h " + (min%60) + "m"; }
   function niceMonth(v){
     if(!v) return "";
-    var p = v.split("-");
-    var d = new Date(+p[0], +p[1]-1, 1);
+    var p = v.split("-"); var d = new Date(+p[0], +p[1]-1, 1);
     return d.toLocaleString("en-US", {month:"long", year:"numeric"});
   }
+  function levelBadge(el, level, range){
+    if(!level){ el.hidden = true; return; }
+    el.hidden = false;
+    el.className = "badge" + (level === "high" ? " high" : level === "low" ? " low" : "");
+    var txt = level === "high" ? "Prices are HIGH right now" : level === "low" ? "Good time to book — prices are LOW" : "Prices are typical";
+    if (range && range.length === 2) txt += " · usually " + pkr(range[0]) + "–" + Math.round(range[1]).toLocaleString("en-PK");
+    el.textContent = txt;
+  }
 
-  // Hero wala "Get today's fare" form
-  document.getElementById("quoteForm").addEventListener("submit", function(e){
-    e.preventDefault();
-    var f = e.target;
-    var msg = "Assalam o Alaikum, please send me today's fare.\n" +
-      "From: " + f.from.value + "\n" +
-      "To: " + f.to.value + "\n" +
-      "Travel month: " + niceMonth(f.month.value) + "\n" +
-      "Travellers: " + f.pax.value + "\n" +
-      "I need: " + f.need.value;
-    window.open(waLink(msg), "_blank");
-  });
+  // WhatsApp links lagana (data-wa wale sab buttons)
+  function wireWa(root){
+    (root || document).querySelectorAll("[data-wa]").forEach(function(el){
+      el.setAttribute("href", waLink(el.getAttribute("data-wa")));
+      el.setAttribute("target", "_blank");
+      el.setAttribute("rel", "noopener");
+    });
+  }
 
-  // Fare Alert wala form
+  // API se kiraya lana
+  function getFares(p){
+    var qs = "from=" + p.from + "&to=" + p.to + "&date=" + p.date + "&adults=" + (p.adults || 1);
+    if (p.ret) qs += "&ret=" + p.ret;
+    if (p.cache) qs += "&cache=" + p.cache;
+    return fetch("/api/fares?" + qs).then(function(r){ return r.json(); });
+  }
+
+  // ---------- Home page ke cards ----------
+  function loadHomeCards(){
+    var box = document.getElementById("fareCards");
+    var date = pkDatePlus(HOME_DAYS_AHEAD);
+    var ret = addDays(date, HOME_TRIP_DAYS);
+    document.getElementById("liveSub").textContent =
+      "Return fares to Jeddah, departing " + niceDate(date) + " for " + HOME_TRIP_DAYS + " days. Tap a city to see all flights.";
+
+    HOME_ROUTES.forEach(function(r){
+      var card = document.createElement("button");
+      card.type = "button";
+      card.className = "fare-card";
+      card.innerHTML =
+        '<div class="route"><span>' + r.from + '<small>' + r.city + '</small></span>' +
+        '<svg width="40" height="16" viewBox="0 0 40 16" fill="none" stroke="#8C9A96" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 8h34M30 3l6 5-6 5"/></svg>' +
+        '<span>JED<small>Jeddah</small></span></div>' +
+        '<div class="fare-price"><span class="skeleton"></span></div>' +
+        '<div class="fare-meta">Checking live fares…</div>';
+      card.addEventListener("click", function(){
+        document.getElementById("sFrom").value = r.from;
+        document.getElementById("sTo").value = "JED";
+        document.getElementById("sDate").value = date;
+        document.getElementById("sTrip").value = String(HOME_TRIP_DAYS);
+        document.getElementById("sAdults").value = "1";
+        runSearch();
+      });
+      box.appendChild(card);
+
+      getFares({ from: r.from, to: "JED", date: date, ret: ret, adults: 1, cache: "day" })
+        .then(function(d){
+          var priceEl = card.querySelector(".fare-price");
+          var metaEl = card.querySelector(".fare-meta");
+          if (d.ok && d.lowest){
+            var f = d.flights && d.flights[0];
+            priceEl.textContent = "from " + pkr(d.lowest);
+            metaEl.innerHTML = (f ? esc(f.airlines.join(", ")) + " · " + (f.stops ? f.stops + " stop" + (f.stops > 1 ? "s" : "") : "Direct") + " · " : "") + "Estimated";
+            if (d.priceLevel === "high" || d.priceLevel === "low"){
+              var b = document.createElement("span"); b.style.marginTop = "4px";
+              levelBadge(b, d.priceLevel, null); metaEl.appendChild(document.createElement("br")); metaEl.appendChild(b);
+            }
+          } else {
+            priceEl.textContent = "Ask us";
+            metaEl.textContent = "Live fare unavailable — tap for options";
+          }
+        })
+        .catch(function(){
+          card.querySelector(".fare-price").textContent = "Ask us";
+          card.querySelector(".fare-meta").textContent = "Live fare unavailable — tap for options";
+        });
+    });
+  }
+
+  // ---------- Search ----------
+  function runSearch(){
+    var from = document.getElementById("sFrom").value;
+    var to = document.getElementById("sTo").value;
+    var date = document.getElementById("sDate").value;
+    var trip = parseInt(document.getElementById("sTrip").value, 10);
+    var adults = parseInt(document.getElementById("sAdults").value, 10);
+    var ret = trip > 0 ? addDays(date, trip) : "";
+
+    var section = document.getElementById("results");
+    var body = document.getElementById("resBody");
+    var btn = document.getElementById("searchBtn");
+    var title = document.getElementById("resTitle");
+    var sub = document.getElementById("resSub");
+    var level = document.getElementById("resLevel");
+
+    if (!date){ alert("Please choose a departure date."); return; }
+
+    section.hidden = false;
+    title.textContent = CITY[from] + " → " + CITY[to];
+    sub.textContent = niceDate(date) + (ret ? " · return " + niceDate(ret) : " · one way") + " · " + adults + " adult" + (adults > 1 ? "s" : "");
+    level.hidden = true;
+    body.innerHTML = '<div class="notice">Checking live fares… <span class="skeleton" style="width:80px;height:14px;vertical-align:middle"></span></div>';
+    btn.disabled = true; btn.textContent = "Checking…";
+    section.scrollIntoView({ behavior: "smooth" });
+
+    var tripText = CITY[from] + " (" + from + ") to " + CITY[to] + " (" + to + "), " + niceDate(date) + (ret ? ", return " + niceDate(ret) : ", one way") + ", " + adults + " adult" + (adults > 1 ? "s" : "");
+
+    getFares({ from: from, to: to, date: date, ret: ret, adults: adults })
+      .then(function(d){
+        if (!d.ok){
+          body.innerHTML = '<div class="notice warn">' + esc(d.error || "Live fares are unavailable right now.") + '</div>' +
+            '<p><a class="btn btn-green" href="#" data-wa="' + esc("Assalam o Alaikum, please send me the best fare for: " + tripText) + '">Ask on WhatsApp</a></p>';
+          wireWa(body); return;
+        }
+        levelBadge(level, d.priceLevel, d.typicalRange);
+        if (!d.flights || !d.flights.length){
+          body.innerHTML = '<div class="notice">No flights found online for these dates. We can still check group and allocation seats for you.</div>' +
+            '<p><a class="btn btn-green" href="#" data-wa="' + esc("Assalam o Alaikum, no online fare was found. Please check group/allocation seats for: " + tripText) + '">Ask on WhatsApp</a></p>';
+          wireWa(body); return;
+        }
+        body.innerHTML = d.flights.map(function(f){
+          var stops = f.stops ? f.stops + " stop" + (f.stops > 1 ? "s" : "") + (f.via.length ? " via " + f.via.join(", ") : "") : "Direct";
+          var dayShift = (f.arriveTime && f.departTime && f.arriveTime.slice(0,10) !== f.departTime.slice(0,10)) ? " (+1)" : "";
+          var msg = "Assalam o Alaikum, I want to book this fare:\n" + tripText + "\n" +
+            f.airlines.join(", ") + " " + f.flightNumbers.join(" / ") + ", departs " + hhmm(f.departTime) + "\n" +
+            "Website price: " + pkr(f.price) + " (estimated)";
+          return '<div class="flight">' +
+            (f.logo ? '<img src="' + esc(f.logo) + '" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">' : '<span></span>') +
+            '<div><div class="f-air">' + esc(f.airlines.join(", ")) + '</div>' +
+              '<div class="f-sub">' + esc(hhmm(f.departTime)) + ' → ' + esc(hhmm(f.arriveTime)) + dayShift + ' · ' + esc(dur(f.durationMin)) + ' · ' + esc(stops) + '</div>' +
+              '<div class="f-sub">' + esc(f.flightNumbers.join(" / ")) + '</div></div>' +
+            '<div class="f-right"><div class="f-price">' + pkr(f.price) + '</div>' +
+              '<a class="btn btn-green" href="#" data-wa="' + esc(msg) + '">Book on WhatsApp</a></div>' +
+          '</div>';
+        }).join("");
+        wireWa(body);
+      })
+      .catch(function(){
+        body.innerHTML = '<div class="notice warn">Live fares are unavailable right now.</div>' +
+          '<p><a class="btn btn-green" href="#" data-wa="' + esc("Assalam o Alaikum, please send me the best fare for: " + tripText) + '">Ask on WhatsApp</a></p>';
+        wireWa(body);
+      })
+      .then(function(){ btn.disabled = false; btn.textContent = "Check Live Fares"; });
+  }
+
+  document.getElementById("searchForm").addEventListener("submit", function(e){ e.preventDefault(); runSearch(); });
+
+  // Taareekh ka khaana: kal se 330 din tak
+  (function(){
+    var d = document.getElementById("sDate");
+    d.min = pkDatePlus(1); d.max = pkDatePlus(330); d.value = pkDatePlus(HOME_DAYS_AHEAD);
+  })();
+
+  // ---------- Fare Alert form ----------
   document.getElementById("alertForm").addEventListener("submit", function(e){
     e.preventDefault();
     var f = e.target;
@@ -444,6 +685,8 @@
     window.open(waLink(msg), "_blank");
   });
 
+  wireWa(document);
+  loadHomeCards();
   document.getElementById("yr").textContent = new Date().getFullYear();
 </script>
 </body>
